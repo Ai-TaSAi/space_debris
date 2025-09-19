@@ -41,12 +41,12 @@ jobs:
       run: |
         set -e
         base="${GODOT_BASE_URL}/${GODOT_VERSION}"
-        echo "⬇️  $base/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+        echo "$base/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
         wget -q $base/Godot_v${GODOT_VERSION}_linux.x86_64.zip -O godot.zip
         unzip -q godot.zip -d ~/godot
         chmod +x ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64
 
-        echo "⬇️  $base/Godot_v${GODOT_VERSION}_export_templates.tpz"
+        echo "$base/Godot_v${GODOT_VERSION}_export_templates.tpz"
         wget -q $base/Godot_v${GODOT_VERSION}_export_templates.tpz -O templates.tpz
         mkdir -p /tmp/tpl && unzip -q templates.tpz -d /tmp/tpl
         for F in /tmp/tpl/templates/*; do
@@ -59,8 +59,8 @@ jobs:
       run: |
         mkdir -p build/web
         ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64 --headless \
-        --path “godot_week_3/” \
-        --export-release "${WEB_PRESET}" build/web/index.html
+          --path “godot_week_3/” \
+          --export-release "${WEB_PRESET}" build/web/index.html
 
     # — upload artifact for Pages —
     - uses: actions/upload-pages-artifact@v3
